@@ -1,8 +1,8 @@
 import express from "express";
-import { detailIkan } from "../controller/detailController.js";
+import { detailIkan, allIkan } from "../controller/detailController.js";
 const router = new express.Router();
 
 router.get("/detail", detailIkan);
-// router.post("/all", all);
+router.get("/all", allIkan);
 
 export default router;

@@ -23,4 +23,22 @@ const detailIkan = async (req, res) => {
   }
 };
 
-export { detailIkan };
+const allIkan = async (req, res) => {
+  let response = null;
+  const signInErrorMessage = "Ikan tidak ditemukan";
+  try {
+    const namaIkan = req.body;
+
+    const ikan = await Ikan.find(
+      {},
+      { _id: 0, nama: 1, habitatAlami: 1, urlToImage: 1 },
+    );
+    response = new Response.Success(false, "success", ikan);
+    res.status(httpStatus.OK).json(response);
+  } catch (error) {
+    response = new Response.Error(true, error.message);
+    return res.status(httpStatus.BAD_REQUEST).json(response);
+  }
+};
+
+export { detailIkan, allIkan };
